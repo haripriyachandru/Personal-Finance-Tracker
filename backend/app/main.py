@@ -44,7 +44,14 @@ app.include_router(dashboard_router.router, prefix="/api/dashboard", tags=["Dash
 app.include_router(ml_router.router, prefix="/api/ml", tags=["Machine Learning"])
 app.include_router(assistant_router.router, prefix="/api/assistant", tags=["AI Assistant"])
 
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "https://your-app.vercel.app",   # add this
+    ],
+    ...
+)
 @app.get("/")
 def root():
     return {"message": "AI Personal Finance Tracker API is running"}
